@@ -68,7 +68,7 @@ npx playwright show-report
 
 ### Si **clonas** este repo
 ```bash
-git clone https://github.com/Aleja01/test-playwright.git
+git clone https://github.com/Aleja01/ts-playwright-pom.git
 cd test-playwright
 npm install
 npx playwright install
