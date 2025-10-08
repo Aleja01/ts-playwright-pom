@@ -19,7 +19,8 @@ npx playwright install
 
 ### Correr todas las pruebas
 ```bash
-npx playwright test
+# Ejecutar el flujo completo (setup + cleanup) de forma estable
+npx playwright test --project=cart-cleanup
 ```
 
 ### Solo agregar productos
