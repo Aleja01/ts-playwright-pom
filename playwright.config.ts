@@ -6,7 +6,7 @@ export default defineConfig({
   fullyParallel: false,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
   reporter: 'html',
   use: {
     baseURL: 'https://www.floristeriamundoflor.com/',
@@ -14,14 +14,13 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
   projects: [
-    // Proyecto base normal (si quieres seguir corriendo tu suite habitual)
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
-      // testMatch: ['tests/**/*.spec.ts'], // tu patrón normal
+      // testMatch: ['tests/**/*.spec.ts'],
     },
 
-    // Setup del carrito (solo el/los tests que agregan)
+    // Setup del carrito (solo los tests que agregan)
     {
       name: 'cart-setup',
       use: { ...devices['Desktop Chrome'] },
@@ -33,7 +32,7 @@ export default defineConfig({
       name: 'cart-cleanup',
       use: {
         ...devices['Desktop Chrome'],
-        storageState: 'playwright/.state/cart.json', // lo genera el setup
+        storageState: 'playwright/.state/cart.json',
       },
       testMatch: ['tests/e2e/delete.products.spec.ts'],
       dependencies: ['cart-setup'],
